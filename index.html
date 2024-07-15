@@ -16,6 +16,17 @@
     <link rel="stylesheet" href="./style.css" />
     <script src="./index.js" defer></script>
 
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function(){
+          emailjs.init({
+            publicKey: "E1w6TJAtPU5GBaJv1",
+          });
+      })();
+    </script>
+
 
     <!-- ===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -264,7 +275,7 @@
               from the comfort of their home and get report of their tests
               directly to their phone.
             </p>
-            <a href="https://github.com/SpyroShk/Sarang-Healthcare" class="work__button">View</a>
+            <a href="https://github.com/SpyroShk/Sarang-Healthcare" target="_blank" class="work__button">View</a>
 
           </div>
 
@@ -369,7 +380,7 @@
               <p class="work__msg">
                 An application for Featherwebs Pvt. Ltd. Employees where all the recent event taking place in the company are shown and notified to the user, as well as attendance of the employees can also be viewed by the employees.
               </p>
-              <a href="https://play.google.com/store/apps/details?id=com.featherwebs.control&hl=en_US&pli=1" class="work__button">View</a>
+              <a href="https://play.google.com/store/apps/details?id=com.featherwebs.control&hl=en_US&pli=1" target="_blank" class="work__button">View</a>
             </div>
   
            
@@ -382,25 +393,40 @@
       <section id="contact" class="section container fade-in-element ">
         <h2 class="section__title">LET'S CONNECT!</h2>
         <div class="contact">
-          <form class="contact__form">
+          <form class="contact__form" onsubmit="sendMail(event)">
             <div class="contact__field-wrapper">
-              <label for="contactNameTxt">Name:</label>
+              <label for="name">Name:</label>
               <input
-                id="contactNameTxt"
+                name="name"
+                id="name"
                 type="text"
                 placeholder="What's your name?"
+                required
               />
             </div>
             <div class="contact__field-wrapper">
-              <label for="contactDescriptionTxt">Message:</label>
-              <textarea
-                id="contactDescriptionTxt"
-                placeholder="Lets connect!"
-              ></textarea>
+              <label for="email">Email:</label>
+              <input
+                name="email"
+                id="email"
+                type="email"
+                placeholder="Email"
+                required
+              />
             </div>
-
-            <button type="submit" class="contact__submit-btn">Submit</button>
+            <div class="contact__field-wrapper">
+              <label for="message">Message:</label>
+              <textarea
+                name="message"
+                id="message"
+                placeholder="Let's connect!"
+                required
+              ></textarea>
+            </div></br>
+            <button type="submit" class="contact__submit-btn" id="submitButton">Submit</button>
           </form>
+          
+          
           <span class="contact__illustration">
             <img
               src="./assets/illustrations/connect.svg"
@@ -418,7 +444,7 @@
         <div class="otheracc">
             <div class="elementor-grid-item">
                 <a class="elementor-icon elementor-social-icon elementor-social-icon-linkedin-in elementor-repeater-item-638ce13"
-                    href="#" target="_blank">
+                    href="https://www.linkedin.com/in/sanshk/" target="_blank">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
             </div>
@@ -430,7 +456,7 @@
             </div>
             <div class="elementor-grid-item">
                 <a class="elementor-icon elementor-social-icon elementor-social-icon-behance elementor-repeater-item-45053c6"
-                    href="#" target="_blank">
+                    href="https://github.com/SpyroShk" target="_blank">
                     <i class="fab fa-github"></i>
                 </a>
             </div>

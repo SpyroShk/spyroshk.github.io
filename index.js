@@ -148,22 +148,56 @@ function checkScreenSize() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  const elements = document.querySelectorAll('.fade-in-element');
-  
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      } else {
-        entry.target.classList.remove('visible');
-      }
-    });
-  }, {
-    threshold: 0.1 // Adjust this threshold value as needed
-  });
+document.addEventListener("DOMContentLoaded", function () {
+  const elements = document.querySelectorAll(".fade-in-element");
 
-  elements.forEach(element => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        } else {
+          entry.target.classList.remove("visible");
+        }
+      });
+    },
+    {
+      threshold: 0.1, // Adjust this threshold value as needed
+    }
+  );
+
+  elements.forEach((element) => {
     observer.observe(element);
   });
 });
+
+function sendMail(event) {
+  event.preventDefault();
+
+  const submitButton = document.getElementById("submitButton");
+  submitButton.disabled = true;
+  submitButton.innerHTML = "Sending...";
+
+  let parms = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value,
+  };
+
+  emailjs
+    .send("service_qzdpu48", "template_sg1mzuc", parms)
+    .then(() => {
+      alert("Email sent successfully!");
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("message").value = "";
+    })
+    .catch((error) => {
+      console.error("Failed to send email:", error);
+      alert("Failed to send email. Please try again later.");
+    })
+    .finally(() => {
+      submitButton.disabled = false;
+      submitButton.innerHTML = "Submit";
+    });
+}
