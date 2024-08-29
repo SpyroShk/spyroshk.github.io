@@ -109,6 +109,7 @@ section {
 
 body {
   line-height: 1;
+  overflow-x: hidden;
 }
 
 ol,
@@ -160,11 +161,20 @@ html {
     opacity: 1;
   }
 }
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
 body {
   color: white;
   background-color: #000000;
   position: relative;
+  /* width: 100%; */
   height: 100%;
   line-height: 1.5;
   font-size: 1.6rem; /* 16px */
@@ -174,29 +184,39 @@ body {
 }
 
 .container {
+  padding: 2.5rem;
+
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 100%;
 }
+
+.alignment {
+  margin: 10rem 10rem 0 10rem;
+}
+
 .section {
-  padding-top: 20rem;
+  /* padding-top: 20rem; */
+  /* justify-content: center;  */
 
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
+  /* min-height: 100vh; */
   /* padding-bottom: 7rem; */
 }
 
 .fade-in-element {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(-20px);
   transition: opacity 1.5s ease-out, transform 1.5s ease-out;
 }
 
 .fade-in-element.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0px);
 }
 
 .vl {
@@ -233,22 +253,22 @@ body {
   width: 100%;
   z-index: -1;
   transform: translateX(-50%);
-  border-bottom: 50px solid #61c1d1;
-  width: 250px  ;
+  border-bottom: 50px solid #67c2d3;
+  width: 250px;
 }
 .section__bg {
   position: absolute;
   width: 500px;
   height: 500px;
-  border-radius: 100%;
-  background-color: #b3bbf9;
+  background-color: #67c2d3;
   top: var(--section-bg-top, auto);
   bottom: var(--section-bg-bottom, auto);
   left: var(--section-bg-left, auto);
   right: var(--section-bg-right, auto);
   z-index: -1;
-  filter: blur(300px);
-  transform: translate(-50%, -50%);
+  filter: blur(50px);
+  transform: translate(50%, -50%);
+  animation: blob 8s infinite ease-in-out;
 }
 /*
  * ==================
@@ -256,8 +276,8 @@ body {
  * ==================
  */
 .nav {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   position: fixed;
   width: 100%;
   top: 0;
@@ -290,7 +310,7 @@ body {
   width: 100%;
   height: 3px;
   border-radius: 99rem;
-  background-color: #b2e2ec;
+  background-color: #67c2d3;
   position: absolute;
   bottom: -12px;
   left: 0;
@@ -300,14 +320,14 @@ body {
 }
 .nav__list-link:focus,
 .nav__list-link:hover {
-  color: #b2e2ec;
+  color: #67c2d3;
 }
 .nav__list-link:focus::before,
 .nav__list-link:hover::before {
   transform: scaleX(1);
 }
 .nav__list-link.active {
-  color: #b2e2ec;
+  color: #67c2d3;
 }
 .nav__list-link.active:focus {
   color: #93ffd0;
@@ -364,6 +384,7 @@ body {
   overflow: hidden;
 }
 .header__container {
+  /* padding: 0 2.5rem; */
   height: 90vh;
   display: flex;
   align-items: center;
@@ -375,7 +396,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  /* background: linear-gradient(to top, #69696913, #1110); */
+  /* background: linear-gradient(to top, #1110, #67c2d3); */
   z-index: -1;
 }
 .header__left {
@@ -391,6 +412,9 @@ body {
 }
 .header__right img {
   width: 100%;
+}
+.rotating-image {
+  transition: transform 0s ease-in-out;
 }
 .header__sup-text {
   display: inline-flex;
@@ -419,14 +443,14 @@ body {
   left: 2px;
   top: 0;
   color: white;
-  background: #111111; /* To create an illusion that the text is moving */
+  background: #000000; /* To create an illusion that the text is moving */
   overflow: hidden;
   clip: rect(0, 900px, 0, 0); /* Only show some part of the clipped-text */
 }
 
 .header__title-1::before,
 .header__title-2::before {
-  text-shadow: -5px 0 #b2e2ec;
+  text-shadow: -5px 0 #67c2d3;
   animation: distort-1 2s infinite linear alternate-reverse;
 }
 
@@ -446,7 +470,7 @@ body {
   display: inline-flex;
   border-radius: 7px;
   text-decoration: none;
-  background-color: #61c1d1;
+  background-color: #67c2d3;
   padding: 1.2rem 1.5rem;
   font-weight: 700;
   color: white;
@@ -460,7 +484,7 @@ body {
 }
 .header__resume::before {
   content: "";
-  background-color: #89d2df;
+  background-color: #67c2d3;
   width: 120%;
   height: 120%;
   display: block;
@@ -530,7 +554,7 @@ body {
 }
 .service-card__box {
   margin-bottom: 7rem;
-  border: 2px solid #61c1d1;
+  border: 2px solid white;
   padding: 1.5rem;
   border-radius: 15px;
   position: relative;
@@ -547,7 +571,7 @@ body {
 .service-card__title {
   font-weight: 800;
   font-size: 2rem;
-  color: #89d2df;
+  color: #67c2d3;
   margin-top: 2rem;
 }
 .service-card__msg {
@@ -560,7 +584,7 @@ body {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: #89d2df;
+  background-color: #67c2d3;
   top: 0;
   left: 0;
   z-index: -1;
@@ -576,12 +600,12 @@ body {
 
 .works {
   flex-direction: column;
-  margin-top: 10rem;
+  margin-top: 5rem;
   display: flex;
   /* flex-wrap: wrap; */
   width: 100%;
   justify-content: space-between;
-  padding-bottom: 5rem;
+  /* padding-bottom: 5rem; */
 }
 .work {
   width: 100%;
@@ -611,7 +635,7 @@ body {
   overflow: hidden;
 }
 .work__badge {
-  background-color: #b2e2ec1c;
+  background-color: #67c2d31c;
   border-radius: 10px;
   font-weight: 700;
   font-size: 1.2rem;
@@ -632,7 +656,7 @@ body {
 .work__title {
   font-weight: 800;
   font-size: 3rem;
-  color: #89d2df;
+  color: #67c2d3;
   /* margin-top: 2rem; */
 }
 .work__msg {
@@ -650,30 +674,37 @@ body {
   overflow: hidden;
   pointer-events: none;
   transition: transform 0.3s ease; /* Add transition for smooth effect */
+  animation: fadeIn 0.5s ease-out;
 }
 .work__illustration:hover img {
   transform: scale(1.1); /* Scale up the image on hover */
 }
-.work__illustration::before {
+.work__illustration:before {
   content: "";
   position: absolute;
   width: 95%;
   height: 95%;
-  border-radius: 50%;
-  background-color: #b2ceec;
+  border-radius: 100%;
+  background-color: #67c2d3;
   display: block;
   z-index: -1;
   filter: blur(150px);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.5s ease-in-out; /* Transition for fade-in and fade-out */
+}
+
+.work__illustration:hover:before {
+  opacity: 1; /* Fade in on hover */
 }
 
 .work__button {
   display: inline-flex;
   border-radius: 7px;
   text-decoration: none;
-  background-color: #61c1d1;
+  background-color: #67c2d3;
   padding: 1.2rem 1.5rem;
   font-weight: 700;
   color: white;
@@ -687,7 +718,7 @@ body {
 }
 .work__button::before {
   content: "";
-  background-color: #89d2df;
+  background-color: #67c2d3;
   width: 50%;
   height: 50%;
   display: block;
@@ -726,10 +757,11 @@ body {
  */
 .contact {
   display: flex;
-  width: 100%;
+  min-width: 100%;
   margin-top: 10rem;
   justify-content: space-between;
   padding-bottom: 5rem;
+  /* padding-left: 20rem; */
 }
 .contact__form {
   width: 100%;
@@ -773,11 +805,11 @@ body {
 .contact__field-wrapper input[type="text"],
 .contact__field-wrapper input[type="email"] {
   padding: 1.5rem;
-  border: 2px dashed #b2ceec;
+  border: 2px dashed #67c2d3;
 }
 .contact__field-wrapper textarea {
   padding: 1rem;
-  border: 2px dashed #b2ceec;
+  border: 2px dashed #67c2d3;
   resize: none;
   height: 150px;
   line-height: 1.6;
@@ -795,7 +827,7 @@ body {
   width: 95%;
   height: 95%;
   border-radius: 50%;
-  background-color: #b2ceec;
+  background-color: #67c2d3;
   display: block;
   z-index: -1;
   filter: blur(150px);
@@ -812,7 +844,7 @@ body {
   font-weight: 700;
   font-family: inherit;
   font-size: 1.6rem;
-  background-color: #b2ceec;
+  background-color: #67c2d3;
   width: 100%;
   position: relative;
   color: #111;
@@ -825,7 +857,7 @@ body {
   position: absolute;
   width: 80%;
   height: 80%;
-  background-color: #b2ceec;
+  background-color: #67c2d3;
   filter: blur(150px);
   left: 0;
   top: 0;
@@ -876,7 +908,7 @@ body {
   }
 }
 .footer__link {
-  color: #b2ceec;
+  color: #67c2d3;
 }
 
 /*
@@ -886,6 +918,8 @@ body {
  */
 @media only screen and (min-width: 36em) {
   .container {
+    padding: 2.5rem;
+
     max-width: 540px;
   }
 
@@ -937,6 +971,13 @@ body {
   .aboutme__illustration--hover {
     display: none;
   }
+
+  .section__bg {
+    display: none;
+  }
+  .alignment {
+    margin: 10rem 0 0 0;
+  }
 }
 
 /*
@@ -946,6 +987,8 @@ body {
  */
 @media only screen and (min-width: 48em) {
   .container {
+    padding: 2.5rem;
+
     max-width: 760px;
   }
 
@@ -989,11 +1032,18 @@ body {
  */
 @media only screen and (min-width: 62em) {
   .container {
+    padding: 2.5rem;
+
     max-width: 960px;
   }
   .section__title {
     text-align: center;
     font-size: 8rem;
+    color: transparent; /* Make the text color transparent */
+    -webkit-text-stroke-width: 2px; /* Width of the stroke */
+    -webkit-text-stroke-color: white; /* Color of the stroke */
+    stroke-miterlimit: 2px; /* Standard text stroke property */
+    text-emphasis-color: white;
   }
   .work {
     width: 33.33333333333333%;
@@ -1011,7 +1061,7 @@ body {
   }
   .contact__form {
     width: 50%;
-    margin-left: unset;
+    /* margin-left: unset; */
   }
   .contact__illustration {
     width: 60%;
@@ -1045,10 +1095,12 @@ body {
     max-width: 1140px;
   }
   .header__title {
-    font-size: 8rem;
+    font-size: 10rem;
   }
   .section {
-    margin-bottom: 13rem;
+    /* margin-bottom: 13rem;
+    margin-top: 13rem; */
+    min-height: 100vh;
   }
 }
 
@@ -1059,6 +1111,8 @@ body {
  */
 @media only screen and (min-width: 87.5em) {
   .container {
+    padding: 2.5rem;
+
     max-width: 1320px;
   }
 }
@@ -1196,5 +1250,44 @@ body {
   }
   100% {
     clip: rect(87px, 9999px, 63px, 0);
+  }
+}
+/* @keyframes move-bg {
+  0% {
+    transform: translate(-50%, -50%) translateX(0) translateY(0);
+  }
+  25% {
+    transform: translate(-50%, -50%) translateX(50px) translateY(50px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(0) translateY(100px);
+  }
+  75% {
+    transform: translate(-50%, -50%) translateX(-50px) translateY(50px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(0) translateY(0);
+  }
+} */
+@keyframes blob {
+  0% {
+    border-radius: 40% 60% 70% 30% / 60% 40% 50% 50%;
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    border-radius: 60% 40% 50% 50% / 30% 70% 60% 40%;
+    transform: translate(50px, -30px) scale(1.1);
+  }
+  50% {
+    border-radius: 50% 50% 40% 60% / 50% 50% 60% 40%;
+    transform: translate(-30px, 50px) scale(0.9);
+  }
+  75% {
+    border-radius: 60% 40% 70% 30% / 40% 60% 50% 50%;
+    transform: translate(-50px, -20px) scale(1.05);
+  }
+  100% {
+    border-radius: 40% 60% 70% 30% / 60% 40% 50% 50%;
+    transform: translate(0, 0) scale(1);
   }
 }

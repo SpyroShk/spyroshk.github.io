@@ -47,10 +47,13 @@ window.addEventListener("resize", () => {
 
 // As the user scrolls, the active link should change based on the section currently displayed on the screen.
 window.addEventListener("scroll", () => {
+  const scrollPosition = window.scrollY;
+  const image = document.querySelector('.rotating-image');
+  const rotation = scrollPosition * 0.06; // Adjust the multiplier for faster or slower rotation
+  image.style.transform = `rotate(${rotation}deg)`;
   const sections = document.querySelectorAll(
     "#heroHeader, #about, #services, #works, #contact"
   );
-
   // Loop through sections and check if they are visible
   sections.forEach((section) => {
     const sectionTop = section.offsetTop;
